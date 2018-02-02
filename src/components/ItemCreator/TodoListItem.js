@@ -29,7 +29,8 @@ class TodoListItem extends Component {
         editEnabled: false
     }
 
-    onEditItemList = () => {
+    onEditItemListEvent = (event) => {
+        event.preventDefault();
         if (!this.state.editEnabled) {
             this.setState({
                 editEnabled: !this.state.editEnabled
@@ -60,7 +61,7 @@ class TodoListItem extends Component {
                 style={listStyle}
             >
                 {!this.state.editEnabled ? <span style={listFontStyles} >{this.props.item.item}</span> :
-                <form className="input-group">
+                <form onSubmit={this.onEditItemListEvent} className="input-group">
                     <input
                         type="text"
                         className="form-control"
@@ -81,7 +82,7 @@ class TodoListItem extends Component {
                         style={{fontWeight: 'bold', cursor: 'pointer', marginLeft: '20px'}}
                         type="button"
                         className="btn btn-primary"
-                        onClick={this.onEditItemList}
+                        onClick={this.onEditItemListEvent}
                     >
                         {!this.state.editEnabled ? 'Edit' : 'update'}
                     </button>
