@@ -1,12 +1,14 @@
+# Getting Started
 
-### Getting Started
+### Installation
 
-#Install dependencies
-> npm install
-OR
-> yarn
+Install the dependencies and devDependencies and start the server.
 
-# Start app
-> npm start
-or
-> yarn start
+With Yarn
+```sh
+$ yarn
+```
+With Npm
+```sh
+$ npm install
+```
