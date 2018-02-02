@@ -24,7 +24,6 @@ const listFontStyles = {
 
 class TodoListItem extends Component {
     state = {
-        newValue: '',
         itemValue: this.props.item.item,
         editEnabled: false
     }
@@ -42,15 +41,13 @@ class TodoListItem extends Component {
         this.setState({
             editEnabled: !this.state.editEnabled
         }, () => {
-            const updatedValue = this.state.newValue !== '' ?
-                this.state.newValue : this.state.itemValue;
-            this.props.onUpdateEvent(this.props.itemIndex, updatedValue)
+            this.props.onUpdateEvent(this.props.itemIndex, this.state.itemValue)
         })
     }
 
     onChangeEvent = (event) => {
         this.setState({
-            newValue: event.target.value
+            itemValue: event.target.value
         })
     }
 
@@ -61,15 +58,32 @@ class TodoListItem extends Component {
                 style={listStyle}
             >
                 {!this.state.editEnabled ? <span style={listFontStyles} >{this.props.item.item}</span> :
-                <form onSubmit={this.onEditItemListEvent} className="input-group">
+                <form
+                    onSubmit={this.onEditItemListEvent}
+                    className="input-group"
+                    style={{
+                        display: 'inline-block',
+                        width: '77%'
+                    }}
+                >
                     <input
                         type="text"
                         className="form-control"
-                        value={this.state.newValue}
+                        style={{
+                            padding: '6px 10px',
+                            fontSize: '24px',
+                            fontWeight: 'bold'
+                        }}
                         onChange={this.onChangeEvent}
+                        value={this.state.itemValue}
                     />
                 </form>}
-                <div className="btn-container">
+                <div
+                    className="btn-container"
+                    style={{
+                        margin: '0 0px 0px 30px'
+                    }}
+                >
                     <button
                         style={{fontWeight: 'bold', cursor: 'pointer'}}
                         type="button"
