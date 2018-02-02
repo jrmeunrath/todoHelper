@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import Items from './Items';
 import {
     addTodoItem,
-    deleteTodoItem
+    deleteTodoItem,
+    getTodoList
 } from './actions';
 
 const styles = {
@@ -85,8 +86,10 @@ ItemCreator.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+    const list = getTodoList(state);
+
     return {
-        todoList: state.todoItems.items || []
+        todoList: list
     }
 };
 
