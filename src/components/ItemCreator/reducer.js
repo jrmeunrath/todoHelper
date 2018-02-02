@@ -16,7 +16,7 @@ import {
 export const ItemCreatorReducer = (state = {}, action) => {
     switch (action.type) {
         case ADD_TO_DO:
-            const newList = state.items || [];
+            const newList = state.items ? [...state.items] : [];
             const newId = Math.random();
 
             if (action.newItem) {

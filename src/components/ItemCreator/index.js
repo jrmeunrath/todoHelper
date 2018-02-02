@@ -1,13 +1,15 @@
+// imported libraries
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+// imported components
 import Items from './Items';
+import TodoList from './TodoList';
+
 import {
-    addTodoItem,
-    deleteTodoItem,
-    getTodoList,
-    deleteAllItems
+    addTodoItem
 } from './actions';
 
 const styles = {
@@ -27,7 +29,7 @@ class ItemCreator extends Component {
     }
 
     onSubmit = () => {
-        this.props.addTodoItem(this.state.taskInputValue);
+        this.props.addTodo(this.state.taskInputValue);
         this.setState({
             taskInputValue: ''
         });
@@ -60,48 +62,24 @@ class ItemCreator extends Component {
                         Submit
                     </span>
                 </div>
-                <div
-                    className="todoList"
-                    style={{marginTop: '40px'}}
-                >
-                    {this.props.todoList.length ?
-                        <Items
-                            items={this.props.todoList}
-                            deleteEvent={this.props.deleteTodoItem}
-                            deleteAllEvent={this.props.deleteAllToDos}
-                        />
-                        :
-                        <div style={{marginTop: '20px'}}>
-                            <h4>Task list here..</h4>
-                        </div>
-                    }
-                </div>
+                <TodoList />
             </div>
         );
     }
 };
 
 ItemCreator.propTypes = {
-    todoList: PropTypes.array,
-    addTodoItem: PropTypes.func,
-    deleteTodoItem: PropTypes.func,
-    deleteAllToDos: PropTypes.func
+    addTodo: PropTypes.func
 };
 
-const mapStateToProps = (state) => {
-    const list = getTodoList(state);
-
-    return {
-        todoList: list
-    }
+const mapStateToProps = () => {
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
         {
-            addTodoItem: addTodoItem,
-            deleteTodoItem: deleteTodoItem,
-            deleteAllToDos: deleteAllItems
+            addTodo: addTodoItem
         },
         dispatch
     )
