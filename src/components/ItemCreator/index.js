@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // imported components
-import Items from './Items';
 import TodoList from './TodoList';
 
 import {

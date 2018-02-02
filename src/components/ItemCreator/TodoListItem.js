@@ -68,6 +68,7 @@ class TodoListItem extends Component {
                 >
                     <input
                         type="text"
+                        id="todoItemUpdateInput"
                         className="form-control"
                         style={{
                             padding: '6px 10px',
