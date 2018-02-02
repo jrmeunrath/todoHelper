@@ -3,24 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import deep from 'deep-get-set';
+import TodoListItem from './TodoListItem';
 import {
-    deleteTodoItem,
     deleteAllItems,
     getTodoList
 } from './actions';
-
-const listStyle = {
-    display: 'inline-flex',
-    width: '100%',
-    flexFlow: 'row'
-};
-
-const listFontStyles = {
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    fontSize: '24px',
-    width: '80%'
-};
 
 const buttonStyles = {
     float: 'right',
@@ -47,21 +34,12 @@ class TodoList extends Component {
                         </button>
                         <ul className="list-group">
                             {this.props.items.map((item, index) =>
-                                <li
-                                    key={item.id}
-                                    className="list-group-item"
-                                    style={listStyle}
-                                >
-                                    <span style={listFontStyles} >{item.item}</span>
-                                    <button
-                                        style={{fontWeight: 'bold', cursor: 'pointer'}}
-                                        type="button"
-                                        className="btn btn-danger"
-                                        onClick={() => this.props.deleteEvent(index)}
-                                    >
-                                        Delete
-                                    </button>
-                                </li>
+                                <div key={item.id}>
+                                    <TodoListItem
+                                        item={item}
+                                        itemIndex={index}
+                                    />
+                                </div>
                             )}
                         </ul>
                     </div>
@@ -77,8 +55,7 @@ class TodoList extends Component {
 
 TodoList.propTypes = {
     items: PropTypes.array,
-    deleteEvent: PropTypes.func,
-    deleteAllEvent: PropTypes.func
+    deleteEvent: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -92,7 +69,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
         {
-            deleteEvent: deleteTodoItem,
             deleteAllEvent: deleteAllItems
         },
         dispatch

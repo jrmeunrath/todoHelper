@@ -28,7 +28,8 @@ class ItemCreator extends Component {
         })
     }
 
-    onSubmit = () => {
+    onSubmit = (event) => {
+        event.preventDefault();
         this.props.addTodo(this.state.taskInputValue);
         this.setState({
             taskInputValue: ''
@@ -45,23 +46,21 @@ class ItemCreator extends Component {
         return (
             <div className="itemCreator">
                 <h3>{this.state.title}</h3>
-                <div className="input-group">
+                <form onSubmit={this.onSubmit} className="input-group">
                     <input
                         type="text"
                         className="form-control"
                         value={this.state.taskInputValue}
                         onChange={this.onChangeEvent}
-                        onKeyPress={this.onKeyPressEvent}
                         placeholder="Enter task here"
                     />
                     <span
                         className="input-group-addon btn btn-primary"
                         style={styles}
-                        onClick={this.onSubmit}
                     >
                         Submit
                     </span>
-                </div>
+                </form>
                 <TodoList />
             </div>
         );

@@ -1,7 +1,8 @@
 import {
     ADD_TO_DO,
     DELETE_TO_DO,
-    DELETE_ALL_TO_DO
+    DELETE_ALL_TO_DO,
+    UPDATE_TO_DO
 } from './actions';
 
 // Reducer data structure
@@ -29,6 +30,22 @@ export const ItemCreatorReducer = (state = {}, action) => {
             return {
                 items: newList
             };
+
+        case UPDATE_TO_DO:
+            const currentItems = [...state.items];
+            const itemToUpdate = currentItems.find((item, index) => index === action.itemIndex);
+            currentItems.splice(
+                action.itemIndex,
+                1,
+                {
+                    ...itemToUpdate,
+                    item: action.updatedValue
+                }
+            );
+
+            return {
+                items: currentItems
+            }
 
         case DELETE_TO_DO:
             const newItems = [...state.items];
