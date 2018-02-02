@@ -14,33 +14,49 @@ const listFontStyles = {
     width: '80%'
 };
 
+const buttonStyles = {
+    float: 'right',
+    marginBottom: '20px',
+    textAlign: 'right'
+};
+
 const Items = (props) => {
     return (
-        <ul className="list-group">
-            {props.items.map((item, index) =>
-                <li
-                    key={item.id}
-                    className="list-group-item"
-                    style={listStyle}
-                >
-                    <span style={listFontStyles} >{item.item}</span>
-                    <button
-                        style={{fontWeight: 'bold', cursor: 'pointer'}}
-                        type="button"
-                        className="btn btn-danger"
-                        onClick={() => props.deleteEvent(index)}
+        <div className="list-container">
+            <button
+                className="btn btn-danger"
+                style={buttonStyles}
+                onClick={props.deleteAllEvent}
+            >
+                Delete All
+            </button>
+            <ul className="list-group">
+                {props.items.map((item, index) =>
+                    <li
+                        key={item.id}
+                        className="list-group-item"
+                        style={listStyle}
                     >
-                        Delete
-                    </button>
-                </li>
-            )}
-        </ul>
+                        <span style={listFontStyles} >{item.item}</span>
+                        <button
+                            style={{fontWeight: 'bold', cursor: 'pointer'}}
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={() => props.deleteEvent(index)}
+                        >
+                            Delete
+                        </button>
+                    </li>
+                )}
+            </ul>
+        </div>
     )
 };
 
 Items.propTypes = {
     items: PropTypes.array,
-    deleteEvent: PropTypes.func
+    deleteEvent: PropTypes.func,
+    deleteAllEvent: PropTypes.func
 };
 
 export default Items;

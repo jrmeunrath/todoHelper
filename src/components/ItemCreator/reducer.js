@@ -1,6 +1,7 @@
 import {
     ADD_TO_DO,
-    DELETE_TO_DO
+    DELETE_TO_DO,
+    DELETE_ALL_TO_DO
 } from './actions';
 
 // Reducer data structure
@@ -35,6 +36,11 @@ export const ItemCreatorReducer = (state = {}, action) => {
 
             return {
                 items: newItems
+            }
+
+        case DELETE_ALL_TO_DO:
+            return {
+                items: []
             }
 
         default:

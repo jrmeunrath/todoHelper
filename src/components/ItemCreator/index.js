@@ -6,7 +6,8 @@ import Items from './Items';
 import {
     addTodoItem,
     deleteTodoItem,
-    getTodoList
+    getTodoList,
+    deleteAllItems
 } from './actions';
 
 const styles = {
@@ -67,6 +68,7 @@ class ItemCreator extends Component {
                         <Items
                             items={this.props.todoList}
                             deleteEvent={this.props.deleteTodoItem}
+                            deleteAllEvent={this.props.deleteAllToDos}
                         />
                         :
                         <div style={{marginTop: '20px'}}>
@@ -82,7 +84,8 @@ class ItemCreator extends Component {
 ItemCreator.propTypes = {
     todoList: PropTypes.array,
     addTodoItem: PropTypes.func,
-    deleteTodoItem: PropTypes.func
+    deleteTodoItem: PropTypes.func,
+    deleteAllToDos: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -97,7 +100,8 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
         {
             addTodoItem: addTodoItem,
-            deleteTodoItem: deleteTodoItem
+            deleteTodoItem: deleteTodoItem,
+            deleteAllToDos: deleteAllItems
         },
         dispatch
     )
