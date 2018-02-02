@@ -1,4 +1,6 @@
-# Getting Started
+## Another ReactRedux todo Example
+
+## Getting Started
 
 ### Installation
 
@@ -12,3 +14,5 @@ With Npm
 ```sh
 $ npm install
 ```
+
+bootstraped from https://github.com/StephenGrider/ReduxSimpleStarter
