@@ -14,7 +14,7 @@ With Npm
 ```sh
 $ npm install
 ```
-Run TodoList
+Run Todo
 ```
 $ yarn start
 ```
