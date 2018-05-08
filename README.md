@@ -14,5 +14,11 @@ With Npm
 ```sh
 $ npm install
 ```
+Run TodoList
+```
+$ yarn start
+```
+
+Visit http://localhost:8080/ in the browser.
 
 bootstraped from https://github.com/StephenGrider/ReduxSimpleStarter
